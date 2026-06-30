@@ -52,7 +52,7 @@ body {
 
 /* ---------- Reglas tipográficas globales ----------
    Anton solo para títulos grandes y SIEMPRE en mayúscula. */
-h1, h2, .titulo-seccion, .hero-phrases, .soon-text h2 {
+h1, h2, .titulo-seccion {
   font-family: 'Anton', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -62,31 +62,6 @@ h1, h2, .titulo-seccion, .hero-phrases, .soon-text h2 {
 h3, h4, .logo {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
-}
-
-/* Etiqueta pequeña reutilizable (texto fino en mayúscula con tracking) */
-.kicker {
-  font-size: 0.72rem;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--verde-osc);
-  font-weight: 600;
-}
-
-/* ---------- CUADROS que simulan las fotos (neutros y discretos) ---------- */
-.img-placeholder {
-  background: #efeee9;
-  border: 1px solid var(--linea);
-  color: var(--tinta-suave);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 0.7rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  min-height: 160px;
-  padding: 10px;
 }
 
 /* ============================================================
@@ -492,9 +467,9 @@ h3, h4, .logo {
 
 /* ============================================================
    ===============  CASO 4: MEDIA QUERY MOBILE  ===============
-   Una sola media query para pantallas de hasta 480px.
-   (La puliremos a fondo en el Caso 4; aquí va una primera
-   versión para ver el móvil funcionando.)
+   Una ÚNICA media query para pantallas de hasta 480px.
+   Aquí se adapta todo el layout a móvil: menú vertical, una sola
+   columna, imágenes al 100% y botones a ancho completo.
    ============================================================ */
 @media (max-width: 480px) {
 
