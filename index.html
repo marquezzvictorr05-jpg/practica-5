@@ -1,27 +1,223 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--
+  FitFuel Market - Página principal (index.html)
+  Práctica 2 - Programación Web
+  Estructura HTML semántica. Solo se construye esta página (index);
+  los enlaces de categorías apuntan a páginas SIMULADAS que aún no existen.
+-->
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <!-- viewport: indispensable para que el diseño responsivo funcione en móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitFuel Market | Suplementos y Fitness</title>
+  <!-- CSS externo (obligatorio en la práctica): la estructura va en HTML, los estilos aparte -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Trillium	Media	Design</h1>
-<nav>
-<b>
-<a href="index.html">Home</a> &nbsp;
-<a href="services.html">Services</a> &nbsp;
-<a href="contact.html">Contact</a>
-</b>
-</nav>
-<main><h2>New Media and Web Design</h2>
-<p>Trillium Media Design offers a comprehensive range of
-services to take your company&apos;s Web presence to the next
-level.</p>
-<h2>Meeting Your Business Needs</h2>
-<p>Our expert designers will listen to you as they create a website
-that helps to promote and grow your business.</p></main>
-<footer><small><i>Copyright &copy; 2022 Your Name Here</i></small>
-</footer>
+
+  <!-- ============================================================
+       1. HEADER + NAV
+       El header contiene el logo, el menú de navegación y el buscador.
+       Menú híbrido: horizontal en desktop, hamburguesa vertical en móvil.
+       ============================================================ -->
+  <header class="header">
+
+    <!-- Logo de la marca -->
+    <div class="logo">Fit<span>Fuel</span></div>
+
+    <!--
+      Truco del checkbox (sin JavaScript): este input invisible recuerda
+      si la hamburguesa está abierta o cerrada. La etiqueta <label> de abajo
+      lo activa al tocarla.
+    -->
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="hamburger" aria-label="Abrir menú">&#9776;</label>
+
+    <!-- Navegación principal. Cada enlace apunta a una página de categoría (simulada). -->
+    <nav class="nav">
+      <ul class="nav-list">
+        <li><a href="proteinas.html">Proteínas</a></li>
+        <li><a href="creatina.html">Creatina</a></li>
+        <li><a href="preworkout.html">Pre-workout</a></li>
+        <li><a href="accesorios.html">Accesorios</a></li>
+        <li><a href="ofertas.html">Ofertas</a></li>
+      </ul>
+    </nav>
+
+    <!-- Buscador (maqueta visual: aún no realiza búsquedas reales) -->
+    <form class="search" role="search">
+      <input type="search" placeholder="Buscar productos...">
+      <button type="submit">🔍</button>
+    </form>
+
+  </header>
+
+  <!-- ============================================================
+       2. MAIN: todo el contenido principal de la página
+       ============================================================ -->
+  <main>
+
+    <!-- ----------------------------------------------------------
+         2.1 HERO dinámico
+         Imagen grande con frases que rotan solas (animación CSS).
+         ---------------------------------------------------------- -->
+    <section class="hero">
+      <!-- CUADRO DE COLOR = aquí va la FOTO del hero -->
+      <div class="img-placeholder hero-img">
+        FOTO HERO: atleta entrenando<br>(horizontal, oscura, alta calidad)
+      </div>
+
+      <!-- Frases que rotan automáticamente con animación -->
+      <div class="hero-text">
+        <h1 class="hero-phrases">
+          <span>SIN EXCUSAS. SOLO RESULTADOS.</span>
+          <span>ALIMENTA TU PRÓXIMO RÉCORD.</span>
+          <span>ENERGÍA QUE SE SIENTE.</span>
+        </h1>
+        <a href="ofertas.html" class="btn">Comprar ahora</a>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------
+         2.2 PRÓXIMAMENTE (producto nuevo "Coming Soon")
+         ---------------------------------------------------------- -->
+    <section class="coming-soon">
+      <div class="img-placeholder soon-img">
+        FOTO PRÓXIMAMENTE:<br>nuevo producto (bote/empaque)
+      </div>
+      <div class="soon-text">
+        <span class="badge">🔜 Próximamente</span>
+        <h2>Whey Isolate ZERO</h2>
+        <p>La proteína más pura de FitFuel está por llegar. Sé el primero en probarla.</p>
+        <a href="#" class="btn btn-outline">Avísame</a>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------
+         2.3 PRODUCTOS DESTACADOS
+         Mínimo 4 productos. Cada uno: imagen, nombre, tipo, precio.
+         ---------------------------------------------------------- -->
+    <section class="productos">
+      <h2 class="titulo-seccion">Productos destacados</h2>
+
+      <div class="grid-productos">
+
+        <!-- Producto 1 -->
+        <article class="card">
+          <div class="img-placeholder prod-img">FOTO: Proteína Whey</div>
+          <h3>Whey Protein Pro</h3>
+          <p class="tipo">Proteína</p>
+          <p class="precio">$29.99</p>
+          <a href="#" class="btn">Agregar</a>
+        </article>
+
+        <!-- Producto 2 -->
+        <article class="card">
+          <div class="img-placeholder prod-img">FOTO: Creatina</div>
+          <h3>Creatina Monohidrato</h3>
+          <p class="tipo">Creatina</p>
+          <p class="precio">$19.99</p>
+          <a href="#" class="btn">Agregar</a>
+        </article>
+
+        <!-- Producto 3 -->
+        <article class="card">
+          <div class="img-placeholder prod-img">FOTO: Pre-workout</div>
+          <h3>Pre-Workout Explosive</h3>
+          <p class="tipo">Pre-workout</p>
+          <p class="precio">$24.99</p>
+          <a href="#" class="btn">Agregar</a>
+        </article>
+
+        <!-- Producto 4 -->
+        <article class="card">
+          <div class="img-placeholder prod-img">FOTO: Shaker/accesorio</div>
+          <h3>Shaker FitFuel 700ml</h3>
+          <p class="tipo">Accesorio</p>
+          <p class="precio">$9.99</p>
+          <a href="#" class="btn">Agregar</a>
+        </article>
+
+      </div>
+
+      <!-- Botón "Ver más" que llevaría al catálogo completo (página simulada) -->
+      <div class="ver-mas">
+        <a href="ofertas.html" class="btn btn-outline">Ver más productos</a>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------
+         2.4 BENEFICIOS
+         Tarjetas con las ventajas de comprar en FitFuel.
+         ---------------------------------------------------------- -->
+    <section class="beneficios">
+      <h2 class="titulo-seccion">¿Por qué FitFuel?</h2>
+      <div class="grid-beneficios">
+        <div class="beneficio">🚚<h3>Envío rápido</h3><p>Recibe tus productos en 24-48h.</p></div>
+        <div class="beneficio">✅<h3>Calidad certificada</h3><p>Suplementos con sello de laboratorio.</p></div>
+        <div class="beneficio">💪<h3>Asesoría fitness</h3><p>Te guiamos según tu objetivo.</p></div>
+        <div class="beneficio">🔒<h3>Pago seguro</h3><p>Transacciones 100% protegidas.</p></div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------------
+         2.5 COMUNIDAD / OPINIONES (cumple el requisito de Testimonios)
+         Muestra opiniones de clientes + un formulario maqueta.
+         ---------------------------------------------------------- -->
+    <section class="comunidad">
+      <h2 class="titulo-seccion">Lo que dice la comunidad</h2>
+
+      <div class="grid-testimonios">
+        <article class="testimonio">
+          <p>"La creatina me cambió los entrenos. Llega rapidísimo."</p>
+          <span class="estrellas">★★★★★</span>
+          <strong>— Andrea G.</strong>
+        </article>
+        <article class="testimonio">
+          <p>"El pre-workout es brutal, energía sin bajón. Recomendado."</p>
+          <span class="estrellas">★★★★★</span>
+          <strong>— Luis M.</strong>
+        </article>
+        <article class="testimonio">
+          <p>"Buen precio y la asesoría me ayudó a elegir bien."</p>
+          <span class="estrellas">★★★★☆</span>
+          <strong>— Carla P.</strong>
+        </article>
+      </div>
+
+      <!-- Formulario maqueta: visualmente interactivo, todavía no envía datos (eso requiere JS/backend) -->
+      <form class="form-opinion">
+        <h3>Deja tu opinión</h3>
+        <input type="text" placeholder="Tu nombre">
+        <textarea placeholder="Cuéntanos tu experiencia..."></textarea>
+        <button type="submit" class="btn">Publicar opinión</button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       3. FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="footer-col">
+      <h4>FitFuel Market</h4>
+      <p>Tu energía, nuestro combustible.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Categorías</h4>
+      <a href="proteinas.html">Proteínas</a>
+      <a href="creatina.html">Creatina</a>
+      <a href="preworkout.html">Pre-workout</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <p>info@fitfuel.com</p>
+      <p>@fitfuelmarket</p>
+    </div>
+    <p class="copy">© 2026 FitFuel Market. Todos los derechos reservados.</p>
+  </footer>
+
 </body>
 </html>
