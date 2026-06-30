@@ -193,120 +193,85 @@ h3, h4, .logo {
 .btn-outline:hover { background: var(--tinta); color: #fff; }
 
 /* ============================================================
-   2.1 HERO: 3 fotos que cambian solas con fundido (crossfade)
-   Todo con CSS puro (animaciones @keyframes), SIN JavaScript.
+   2.1 HERO único: una foto de fondo con la frase principal
    ============================================================ */
 .hero {
   position: relative;
-  height: 480px;
+  height: 520px;
   overflow: hidden;
 }
-
-/* Los 3 slides se apilan uno sobre otro en el mismo lugar */
-.slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;                       /* ocultos por defecto... */
-  /* ...la animación los va mostrando por turnos en un ciclo de 18s */
-  animation: heroFade 18s infinite;
+/* La foto cubre todo el hero; el zoom lento (Ken Burns) le da movimiento */
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                /* la foto llena el área sin deformarse */
+  display: block;
+  animation: zoom 12s ease-in-out infinite alternate;
 }
-/* Cada slide entra 6s después del anterior (18s / 3 = 6s por slide) */
-.slide:nth-child(1) { animation-delay: 0s; }
-.slide:nth-child(2) { animation-delay: 6s; }
-.slide:nth-child(3) { animation-delay: 12s; }
-
-/* Ciclo de opacidad: aparece, se mantiene y se funde con el siguiente */
-@keyframes heroFade {
-  0%   { opacity: 0; }
-  4%   { opacity: 1; }   /* fade in */
-  30%  { opacity: 1; }   /* se mantiene visible */
-  37%  { opacity: 0; }   /* fade out (se cruza con el siguiente) */
-  100% { opacity: 0; }
-}
-
-/* La foto de cada slide ocupa todo el espacio */
-.slide-img {
-  position: absolute;
-  inset: 0;
-  border: none;
-  color: #ffffff;
-  background: linear-gradient(120deg, #20231f, #3a3d38);
-  animation: zoom 9s ease-in-out infinite alternate;  /* zoom lento (Ken Burns) */
-}
-/* Cada slide con un tono distinto para distinguir las 3 fotos en la maqueta */
-.slide:nth-child(2) .slide-img { background: linear-gradient(120deg, #1d2a24, #38463f); }
-.slide:nth-child(3) .slide-img { background: linear-gradient(120deg, #262320, #423d38); }
 @keyframes zoom {
   from { transform: scale(1); }
   to   { transform: scale(1.08); }
 }
-/* Velo oscuro sobre la foto para que el texto siempre se lea */
-.slide::after {
+/* Velo oscuro sobre la foto para que el texto blanco siempre se lea */
+.hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.15));
+  background: linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0.15));
 }
 
-.slide-text {
+.hero-text {
   position: absolute;
-  bottom: 60px;
+  bottom: 64px;
   left: 56px;
   z-index: 2;
-  max-width: 600px;
+  max-width: 620px;
 }
-.slide-text h1 {
-  font-size: 3.4rem;
+.hero-text h1 {
+  font-size: 3.6rem;
   line-height: 1.05;
   color: #ffffff;
   margin-bottom: 26px;
-}
-
-/* Puntos indicadores centrados abajo */
-.hero-dots {
-  position: absolute;
-  bottom: 22px;
-  left: 0;
-  right: 0;
-  z-index: 3;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-.hero-dots span {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  animation: punto 18s infinite;    /* se ilumina en sincronía con su slide */
-}
-.hero-dots span:nth-child(1) { animation-delay: 0s; }
-.hero-dots span:nth-child(2) { animation-delay: 6s; }
-.hero-dots span:nth-child(3) { animation-delay: 12s; }
-@keyframes punto {
-  0%, 33%    { background: var(--verde); transform: scale(1.25); }
-  34%, 100%  { background: rgba(255, 255, 255, 0.4); transform: scale(1); }
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
 }
 
 /* ============================================================
    2.2 PRÓXIMAMENTE
    ============================================================ */
 .coming-soon {
+  position: relative;
+  min-height: 460px;
+  margin: 90px 0;
   display: flex;
   align-items: center;
-  gap: 48px;
-  background: var(--superficie);
-  padding: 64px 56px;
-  margin: 80px 48px;
-  border: 1px solid var(--linea);
-  border-radius: 4px;
+  overflow: hidden;
 }
-.soon-img { flex: 1; min-height: 260px; border-radius: 2px; }
-.soon-text { flex: 1; }
-.soon-text h2 { font-size: 2.6rem; margin: 16px 0 18px; line-height: 1.05; }
-.soon-text p { color: var(--tinta-suave); margin-bottom: 28px; }
+/* Foto de fondo a sangre completa */
+.soon-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Velo oscuro denso = sensación misteriosa y texto legible */
+.coming-soon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.3) 100%);
+}
+.soon-content {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+  padding: 0 56px;
+  color: #ffffff;
+}
+.soon-content h2 { font-size: 2.8rem; margin: 16px 0 18px; line-height: 1.05; }
+.soon-content p { color: rgba(255, 255, 255, 0.82); margin-bottom: 28px; }
 
-/* Etiqueta "Próximamente": texto fino con tracking y un punto verde (sin pill llamativa) */
+/* Etiqueta "Próximamente": texto fino con tracking y un punto verde parpadeante */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -314,7 +279,7 @@ h3, h4, .logo {
   font-size: 0.72rem;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: var(--verde-osc);
+  color: var(--verde);
   font-weight: 600;
 }
 .badge::before {
@@ -322,6 +287,11 @@ h3, h4, .logo {
   width: 7px; height: 7px;
   border-radius: 50%;
   background: var(--verde);
+  animation: latir 1.6s infinite;   /* el punto late suavemente */
+}
+@keyframes latir {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.8); }
 }
 
 /* ============================================================
@@ -368,9 +338,12 @@ h3, h4, .logo {
   background: linear-gradient(160deg, #f0efe9, #e4e7e0);
 }
 .prod-media .prod-img {
-  border: none;
-  min-height: 230px;
-  background: transparent;         /* el PNG llevará su propio fondo transparente */
+  display: block;
+  width: 100%;
+  height: 240px;
+  object-fit: contain;             /* muestra el PNG completo sin recortarlo */
+  padding: 22px;
+  background: transparent;         /* el PNG lleva su propio fondo transparente */
   transition: transform 0.4s ease;
 }
 .card:hover .prod-media .prod-img { transform: scale(1.07); }   /* zoom dinámico al pasar el cursor */
@@ -561,27 +534,23 @@ h3, h4, .logo {
     padding: 0 20px;
   }
 
-  /* La sección "Próximamente" se apila en vertical */
-  .coming-soon {
-    flex-direction: column;
-    padding: 40px 24px;
-    margin: 48px 20px;
-    gap: 28px;
-  }
+  /* El banner de lanzamiento se hace más bajo y con menos padding */
+  .coming-soon { min-height: 380px; margin: 56px 0; }
+  .soon-content { padding: 0 24px; }
 
   /* Tipografía más pequeña para que quepa y se lea bien */
-  .slide-text h1 { font-size: 2rem; }
+  .hero-text h1 { font-size: 2.1rem; }
   .titulo-seccion { font-size: 1.8rem; margin: 56px 0 32px; }
-  .soon-text h2 { font-size: 2rem; }
+  .soon-content h2 { font-size: 2rem; }
 
   /* Imágenes al 100% del ancho del contenedor */
-  .img-placeholder { width: 100%; }
+  .prod-media .prod-img { width: 100%; height: 220px; }
 
   /* Botones a ancho completo (más fáciles de tocar con el dedo) */
   .btn { width: 100%; text-align: center; }
 
-  /* Hero más bajo y texto reposicionado (el carrusel se desliza con el dedo) */
-  .slide { min-height: 360px; }
-  .slide-text { left: 22px; right: 22px; bottom: 30px; }
-  .slide-text .btn { width: auto; }   /* el botón del hero no a ancho completo */
+  /* Hero más bajo y texto reposicionado */
+  .hero { height: 380px; }
+  .hero-text { left: 22px; right: 22px; bottom: 30px; }
+  .hero-text .btn { width: auto; }   /* el botón del hero no a ancho completo */
 }

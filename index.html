@@ -70,55 +70,25 @@
          tiene su propia foto, su frase y su botón.
          ---------------------------------------------------------- -->
     <section class="hero">
-
-      <!-- Slide 1 (los 3 slides se funden entre sí automáticamente con CSS, sin JS) -->
-      <article class="slide">
-        <div class="img-placeholder slide-img">FOTO HERO 1: atleta entrenando</div>
-        <div class="slide-text">
-          <h1>SIN EXCUSAS.</h1>
-          <a href="ofertas.html" class="btn">Comprar ahora</a>
-        </div>
-      </article>
-
-      <!-- Slide 2 -->
-      <article class="slide">
-        <div class="img-placeholder slide-img">FOTO HERO 2: levantamiento / gym</div>
-        <div class="slide-text">
-          <h1>SUPERA TU LÍMITE.</h1>
-          <a href="proteinas.html" class="btn">Ver proteínas</a>
-        </div>
-      </article>
-
-      <!-- Slide 3 -->
-      <article class="slide">
-        <div class="img-placeholder slide-img">FOTO HERO 3: energía / running</div>
-        <div class="slide-text">
-          <h1>ENERGÍA REAL.</h1>
-          <a href="preworkout.html" class="btn">Ver pre-workout</a>
-        </div>
-      </article>
-
-      <!-- Puntos indicadores: se iluminan en sincronía con el slide activo -->
-      <div class="hero-dots">
-        <span></span>
-        <span></span>
-        <span></span>
+      <!-- Hero único: foto de fondo + frase principal. El zoom lento (CSS) le da vida. -->
+      <img class="hero-img" src="fotos/hero-barbell.jpg" alt="Atleta sosteniendo una barra con discos">
+      <div class="hero-text">
+        <h1>SUPERA TU LÍMITE.</h1>
+        <a href="proteinas.html" class="btn">Ver proteínas</a>
       </div>
-
     </section>
 
     <!-- ----------------------------------------------------------
          2.2 PRÓXIMAMENTE (producto nuevo "Coming Soon")
          ---------------------------------------------------------- -->
     <section class="coming-soon">
-      <div class="img-placeholder soon-img">
-        FOTO PRÓXIMAMENTE:<br>nuevo producto (bote/empaque)
-      </div>
-      <div class="soon-text">
+      <!-- Banner a pantalla completa: foto de fondo + velo oscuro = aire misterioso -->
+      <img class="soon-bg" src="fotos/lanzamiento-mud.jpg" alt="Corredor con las piernas cubiertas de barro">
+      <div class="soon-content">
         <span class="badge">Próximamente</span>
-        <h2>Whey Isolate ZERO</h2>
-        <p>La proteína más pura de FitFuel está por llegar. Sé el primero en probarla.</p>
-        <a href="#" class="btn btn-outline">Avísame</a>
+        <h2>Para los que dan la milla extra</h2>
+        <p>Algo nuevo se está cocinando en FitFuel. Todavía no podemos decir qué es… pero vas a quererlo.</p>
+        <a href="#" class="btn">Quiero enterarme</a>
       </div>
     </section>
 
@@ -139,7 +109,7 @@
         <article class="card">
           <div class="prod-media">
             <span class="tag">Proteína</span>
-            <div class="img-placeholder prod-img">PNG: Proteína Whey<br>(fondo transparente)</div>
+            <img class="prod-img" src="fotos/whey.png" alt="Bote de proteína Whey Protein Pro">
           </div>
           <div class="card-body">
             <h3>Whey Protein Pro</h3>
@@ -152,7 +122,7 @@
         <article class="card">
           <div class="prod-media">
             <span class="tag">Creatina</span>
-            <div class="img-placeholder prod-img">PNG: Creatina<br>(fondo transparente)</div>
+            <img class="prod-img" src="fotos/creatina.png" alt="Bote de creatina monohidrato">
           </div>
           <div class="card-body">
             <h3>Creatina Monohidrato</h3>
@@ -165,7 +135,7 @@
         <article class="card">
           <div class="prod-media">
             <span class="tag">Pre-workout</span>
-            <div class="img-placeholder prod-img">PNG: Pre-workout<br>(fondo transparente)</div>
+            <img class="prod-img" src="fotos/preworkout.png" alt="Bote de pre-workout explosivo">
           </div>
           <div class="card-body">
             <h3>Pre-Workout Explosive</h3>
@@ -178,7 +148,7 @@
         <article class="card">
           <div class="prod-media">
             <span class="tag">Accesorio</span>
-            <div class="img-placeholder prod-img">PNG: Shaker / accesorio<br>(fondo transparente)</div>
+            <img class="prod-img" src="fotos/shaker.png" alt="Shaker FitFuel de 700 ml">
           </div>
           <div class="card-body">
             <h3>Shaker FitFuel 700ml</h3>
