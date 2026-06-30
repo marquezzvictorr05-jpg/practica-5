@@ -48,7 +48,13 @@
     <!-- Buscador (maqueta visual: aún no realiza búsquedas reales) -->
     <form class="search" role="search">
       <input type="search" placeholder="Buscar productos...">
-      <button type="submit">🔍</button>
+      <button type="submit" aria-label="Buscar">
+        <!-- Icono lupa en SVG (vectorial, nítido y elegante, sin emojis) -->
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7"></circle>
+          <line x1="21" y1="21" x2="16.5" y2="16.5"></line>
+        </svg>
+      </button>
     </form>
 
   </header>
@@ -71,9 +77,9 @@
       <!-- Frases que rotan automáticamente con animación -->
       <div class="hero-text">
         <h1 class="hero-phrases">
-          <span>SIN EXCUSAS. SOLO RESULTADOS.</span>
-          <span>ALIMENTA TU PRÓXIMO RÉCORD.</span>
-          <span>ENERGÍA QUE SE SIENTE.</span>
+          <span>SIN EXCUSAS.</span>
+          <span>SUPERA TU LÍMITE.</span>
+          <span>ENERGÍA REAL.</span>
         </h1>
         <a href="ofertas.html" class="btn">Comprar ahora</a>
       </div>
@@ -87,7 +93,7 @@
         FOTO PRÓXIMAMENTE:<br>nuevo producto (bote/empaque)
       </div>
       <div class="soon-text">
-        <span class="badge">🔜 Próximamente</span>
+        <span class="badge">Próximamente</span>
         <h2>Whey Isolate ZERO</h2>
         <p>La proteína más pura de FitFuel está por llegar. Sé el primero en probarla.</p>
         <a href="#" class="btn btn-outline">Avísame</a>
@@ -152,12 +158,29 @@
          Tarjetas con las ventajas de comprar en FitFuel.
          ---------------------------------------------------------- -->
     <section class="beneficios">
-      <h2 class="titulo-seccion">¿Por qué FitFuel?</h2>
+      <h2 class="titulo-seccion">Por qué FitFuel</h2>
       <div class="grid-beneficios">
-        <div class="beneficio">🚚<h3>Envío rápido</h3><p>Recibe tus productos en 24-48h.</p></div>
-        <div class="beneficio">✅<h3>Calidad certificada</h3><p>Suplementos con sello de laboratorio.</p></div>
-        <div class="beneficio">💪<h3>Asesoría fitness</h3><p>Te guiamos según tu objetivo.</p></div>
-        <div class="beneficio">🔒<h3>Pago seguro</h3><p>Transacciones 100% protegidas.</p></div>
+        <!-- Cada beneficio se identifica con un número discreto en vez de un emoji -->
+        <div class="beneficio">
+          <span class="num">01</span>
+          <h3>Envío en 24-48h</h3>
+          <p>Logística ágil para que nunca pares tu rutina.</p>
+        </div>
+        <div class="beneficio">
+          <span class="num">02</span>
+          <h3>Calidad certificada</h3>
+          <p>Cada lote cuenta con respaldo de laboratorio.</p>
+        </div>
+        <div class="beneficio">
+          <span class="num">03</span>
+          <h3>Asesoría experta</h3>
+          <p>Te orientamos según tu objetivo y experiencia.</p>
+        </div>
+        <div class="beneficio">
+          <span class="num">04</span>
+          <h3>Pago seguro</h3>
+          <p>Transacciones cifradas y 100% protegidas.</p>
+        </div>
       </div>
     </section>
 

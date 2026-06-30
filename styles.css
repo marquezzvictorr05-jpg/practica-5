@@ -1,9 +1,10 @@
 /* ============================================================
    FitFuel Market - Hoja de estilos (styles.css)
    Práctica 2 - Programación Web
-   Paleta fresca: gris de fondo + verde energético + texto oscuro.
-   Tipografías: Anton (títulos, SIEMPRE en mayúscula) +
-   Neue Haas Display (subtítulos y cuerpo).
+   Estilo: editorial / premium. Mucho aire, paleta sobria,
+   líneas finas y verde esmeralda usado con moderación.
+   Tipografías: Anton (grandes títulos, SIEMPRE mayúscula) +
+   Montserrat (subtítulos y cuerpo).
    ============================================================ */
 
 /* ---------- Tipografías propias (cargadas localmente con @font-face) ---------- */
@@ -14,40 +15,22 @@
   font-display: swap;
 }
 @font-face {
-  font-family: 'Neue Haas Display';
-  src: url('fonts/NeueHaasDisplay-Thin.ttf') format('truetype');
-  font-weight: 300;        /* Thin */
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('fonts/NeueHaasDisplay-Roman.ttf') format('truetype');
-  font-weight: 400;        /* Roman = cuerpo normal */
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('fonts/NeueHaasDisplay-Medium.ttf') format('truetype');
-  font-weight: 500;        /* Medium = subtítulos */
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('fonts/NeueHaasDisplay-Bold.ttf') format('truetype');
-  font-weight: 700;        /* Bold = énfasis fuerte */
+  /* Montserrat es una fuente VARIABLE: un solo archivo cubre todos los pesos */
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-Variable.ttf') format('truetype');
+  font-weight: 100 900;
   font-display: swap;
 }
 
 /* ---------- Variables de color (cambia la paleta desde un solo lugar) ---------- */
 :root {
-  --fondo: #e8eae6;        /* gris claro = color de fondo principal */
-  --superficie: #ffffff;   /* blanco para tarjetas */
-  --carbon: #1c1c1c;       /* casi negro para texto y footer */
-  --verde: #00c853;        /* verde energético fresco, acento */
-  --verde-osc: #009e40;    /* verde más oscuro para hover */
-  --texto: #1c1c1c;
-  --texto-suave: #6b6b6b;
-  --borde: #d6d8d3;
+  --fondo: #f6f5f2;        /* blanco roto cálido = fondo principal */
+  --superficie: #ffffff;   /* tarjetas */
+  --tinta: #1c1c1c;        /* texto principal */
+  --tinta-suave: #8c8a85;  /* texto secundario */
+  --verde: #1f6f54;        /* verde esmeralda profundo, acento sobrio */
+  --verde-osc: #185640;    /* verde para hover */
+  --linea: #e7e4dd;        /* líneas finas / bordes */
 }
 
 /* ---------- Reset básico ---------- */
@@ -58,39 +41,49 @@
 }
 
 body {
-  /* Cuerpo en Neue Haas Display Roman (400) */
-  font-family: 'Neue Haas Display', Arial, sans-serif;
+  /* Cuerpo en Montserrat, peso normal y mucho interlineado para que respire */
+  font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 400;
   background-color: var(--fondo);
-  color: var(--texto);
-  line-height: 1.55;
+  color: var(--tinta);
+  line-height: 1.7;
 }
 
 /* ---------- Reglas tipográficas globales ----------
    Anton solo para títulos grandes y SIEMPRE en mayúscula. */
-h1, h2, .logo, .titulo-seccion, .hero-phrases, .soon-text h2 {
+h1, h2, .titulo-seccion, .hero-phrases, .soon-text h2 {
   font-family: 'Anton', sans-serif;
-  text-transform: uppercase;   /* Anton siempre en MAYÚSCULA */
+  text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 400;
 }
-/* Subtítulos de componentes en Neue Haas Medium (no Anton) */
-h3, h4 {
-  font-family: 'Neue Haas Display', sans-serif;
-  font-weight: 500;
+/* Subtítulos y elementos de marca en Montserrat */
+h3, h4, .logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
 }
 
-/* ---------- CUADROS DE COLOR que simulan las fotos ---------- */
+/* Etiqueta pequeña reutilizable (texto fino en mayúscula con tracking) */
+.kicker {
+  font-size: 0.72rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--verde);
+  font-weight: 600;
+}
+
+/* ---------- CUADROS que simulan las fotos (neutros y discretos) ---------- */
 .img-placeholder {
-  background: repeating-linear-gradient(45deg, #dfe1dc, #dfe1dc 12px, #d2d4cf 12px, #d2d4cf 24px);
-  border: 2px dashed var(--verde);
-  color: var(--verde-osc);
+  background: #efeee9;
+  border: 1px solid var(--linea);
+  color: var(--tinta-suave);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   min-height: 160px;
   padding: 10px;
 }
@@ -102,77 +95,101 @@ h3, h4 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 24px;
   background-color: var(--superficie);
-  padding: 15px 30px;
+  padding: 20px 48px;
   position: sticky;            /* el header se queda fijo al hacer scroll */
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid var(--linea);
 }
 
 .logo {
-  font-size: 1.8rem;
-  color: var(--carbon);
+  font-size: 1.35rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--tinta);
 }
-.logo span { color: var(--verde); }   /* "FUEL" en verde */
+.logo span { color: var(--verde); }
 
 .nav-list {
   list-style: none;
   display: flex;
-  gap: 22px;
+  gap: 30px;
 }
 .nav-list a {
-  color: var(--texto);
+  color: var(--tinta);
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.25s;
+}
+/* Subrayado fino que aparece al pasar el cursor (detalle delicado) */
+.nav-list a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 1px;
+  background: var(--verde);
+  transition: width 0.25s;
 }
 .nav-list a:hover { color: var(--verde); }
+.nav-list a:hover::after { width: 100%; }
 
 /* Buscador */
-.search { display: flex; }
+.search { display: flex; align-items: center; }
 .search input {
-  border: 1px solid var(--borde);
-  padding: 8px 12px;
-  border-radius: 4px 0 0 4px;
+  border: 1px solid var(--linea);
+  border-right: none;
+  padding: 9px 14px;
+  border-radius: 2px 0 0 2px;
   background: var(--fondo);
-  color: var(--texto);
+  color: var(--tinta);
   font-family: inherit;
+  font-size: 0.85rem;
 }
 .search button {
-  border: none;
-  padding: 8px 14px;
-  border-radius: 0 4px 4px 0;
+  border: 1px solid var(--verde);
   background: var(--verde);
+  color: #fff;
+  padding: 9px 12px;
+  border-radius: 0 2px 2px 0;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 /* La hamburguesa y su checkbox se ocultan en desktop */
 .hamburger,
 .menu-toggle { display: none; }
 
-/* ---------- Botones reutilizables ---------- */
+/* ---------- Botones reutilizables (sobrios, con tracking) ---------- */
 .btn {
   display: inline-block;
   background: var(--verde);
   color: #ffffff;
-  font-family: 'Neue Haas Display', sans-serif;
-  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   text-decoration: none;
-  padding: 12px 26px;
-  border: 2px solid var(--verde);
-  border-radius: 6px;
+  padding: 13px 30px;
+  border: 1px solid var(--verde);
+  border-radius: 2px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.25s;
 }
 .btn:hover { background: var(--verde-osc); border-color: var(--verde-osc); }
 
 .btn-outline {
   background: transparent;
-  color: var(--verde-osc);
+  color: var(--tinta);
+  border-color: var(--tinta);
 }
-.btn-outline:hover { background: var(--verde); color: #fff; }
+.btn-outline:hover { background: var(--tinta); color: #fff; }
 
 /* ============================================================
    2.1 HERO con animación
@@ -182,31 +199,43 @@ h3, h4 {
   overflow: hidden;
 }
 .hero-img {
-  min-height: 400px;
+  min-height: 460px;
   border: none;
-  color: #ffffff;
-  background: repeating-linear-gradient(45deg, #3a3d38, #3a3d38 12px, #2c2f2b 12px, #2c2f2b 24px);
-  /* animación "Ken Burns": zoom lento e infinito que da sensación de movimiento */
-  animation: zoom 12s ease-in-out infinite alternate;
+  color: #fff;
+  background: linear-gradient(120deg, #20231f, #3a3d38);
+  /* animación "Ken Burns": zoom lento e infinito */
+  animation: zoom 14s ease-in-out infinite alternate;
 }
 @keyframes zoom {
   from { transform: scale(1); }
-  to   { transform: scale(1.1); }
+  to   { transform: scale(1.08); }
+}
+/* Velo oscuro encima de la imagen para que el texto siempre se lea */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.1));
+  pointer-events: none;
 }
 
 .hero-text {
-  position: absolute;          /* el texto va encima de la imagen */
-  bottom: 45px;
-  left: 45px;
+  position: absolute;
+  bottom: 60px;
+  left: 56px;
+  z-index: 2;
+  max-width: 600px;
 }
 .hero-phrases {
-  font-size: 3rem;
+  font-size: 3.4rem;
+  line-height: 1.05;
   color: #ffffff;
-  margin-bottom: 22px;
-  min-height: 3.4rem;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  margin-bottom: 28px;
+  min-height: 3.8rem;          /* altura fija: evita que el botón se encime al rotar las frases */
+  position: relative;
 }
-/* Las 3 frases se apilan y se muestran una a una con opacidad */
+.hero-phrases span:nth-child(1) { position: static; }  /* la 1ª reserva la altura del bloque */
+/* Las 3 frases se apilan y aparecen una a una */
 .hero-phrases span {
   display: block;
   position: absolute;
@@ -217,7 +246,7 @@ h3, h4 {
 .hero-phrases span:nth-child(2) { animation-delay: 3s; }
 .hero-phrases span:nth-child(3) { animation-delay: 6s; }
 @keyframes rotarFrases {
-  0%   { opacity: 0; transform: translateY(20px); }
+  0%   { opacity: 0; transform: translateY(16px); }
   10%  { opacity: 1; transform: translateY(0); }
   30%  { opacity: 1; }
   40%  { opacity: 0; }
@@ -230,31 +259,34 @@ h3, h4 {
 .coming-soon {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 48px;
   background: var(--superficie);
-  padding: 40px 30px;
-  margin: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 64px 56px;
+  margin: 80px 48px;
+  border: 1px solid var(--linea);
+  border-radius: 4px;
 }
-.soon-img { flex: 1; min-height: 220px; border-radius: 8px; }
+.soon-img { flex: 1; min-height: 260px; border-radius: 2px; }
 .soon-text { flex: 1; }
-.soon-text h2 { font-size: 2.4rem; margin: 12px 0; }
-.soon-text p { color: var(--texto-suave); margin-bottom: 18px; }
+.soon-text h2 { font-size: 2.6rem; margin: 16px 0 18px; line-height: 1.05; }
+.soon-text p { color: var(--tinta-suave); margin-bottom: 28px; }
 
-/* Etiqueta "Próximamente" con latido suave para llamar la atención */
+/* Etiqueta "Próximamente": texto fino con tracking y un punto verde (sin pill llamativa) */
 .badge {
-  display: inline-block;
-  background: var(--verde);
-  color: #ffffff;
-  font-weight: 700;
-  padding: 5px 14px;
-  border-radius: 20px;
-  animation: latir 1.5s infinite;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--verde);
+  font-weight: 600;
 }
-@keyframes latir {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.08); }
+.badge::before {
+  content: "";
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--verde);
 }
 
 /* ============================================================
@@ -263,71 +295,75 @@ h3, h4 {
 .titulo-seccion {
   text-align: center;
   font-size: 2.4rem;
-  margin: 55px 0 30px;
+  margin: 90px 0 44px;
 }
-.titulo-seccion::after {     /* línea verde decorativa bajo el título */
+.titulo-seccion::after {     /* línea fina y corta bajo el título */
   content: "";
   display: block;
-  width: 60px;
-  height: 4px;
+  width: 40px;
+  height: 2px;
   background: var(--verde);
-  margin: 12px auto 0;
+  margin: 16px auto 0;
 }
 
 .grid-productos {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);   /* 4 columnas iguales */
-  gap: 22px;
-  padding: 0 30px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  padding: 0 48px;
 }
 .card {
   background: var(--superficie);
-  border-radius: 12px;
-  padding: 16px;
+  border: 1px solid var(--linea);
+  border-radius: 4px;
+  padding: 18px;
   text-align: center;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.25s, box-shadow 0.25s;
 }
 .card:hover {
-  transform: translateY(-6px);             /* la tarjeta "sube" al pasar el mouse */
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.06);
 }
-.card .prod-img { min-height: 150px; margin-bottom: 14px; border-radius: 8px; }
-.card h3 { margin-bottom: 6px; font-size: 1.15rem; }
+.card .prod-img { min-height: 180px; margin-bottom: 18px; border-radius: 2px; }
+.card h3 { margin-bottom: 4px; font-size: 1.05rem; font-weight: 600; }
 .tipo {
-  color: var(--verde-osc);
-  font-size: 0.8rem;
-  font-weight: 500;
+  color: var(--tinta-suave);
+  font-size: 0.68rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 .precio {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin: 8px 0 14px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 10px 0 18px;
 }
 
-.ver-mas { text-align: center; margin: 32px 0; }
+.ver-mas { text-align: center; margin: 44px 0; }
 
 /* ============================================================
-   2.4 BENEFICIOS
+   2.4 BENEFICIOS (numerados, sin emojis)
    ============================================================ */
 .grid-beneficios {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
-  padding: 0 30px;
+  gap: 28px;
+  padding: 0 48px;
 }
 .beneficio {
   background: var(--superficie);
-  border-radius: 12px;
-  padding: 28px 16px;
-  text-align: center;
-  font-size: 2.2rem;           /* tamaño del emoji */
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--linea);
+  border-radius: 4px;
+  padding: 36px 26px;
 }
-.beneficio h3 { font-size: 1.1rem; margin: 12px 0 6px; }
-.beneficio p { font-size: 0.92rem; color: var(--texto-suave); }
+.beneficio .num {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.6rem;
+  color: var(--verde);
+  display: block;
+  margin-bottom: 14px;
+}
+.beneficio h3 { font-size: 1.05rem; margin-bottom: 8px; }
+.beneficio p { font-size: 0.9rem; color: var(--tinta-suave); }
 
 /* ============================================================
    2.5 COMUNIDAD / OPINIONES
@@ -335,41 +371,48 @@ h3, h4 {
 .grid-testimonios {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  padding: 0 30px;
+  gap: 28px;
+  padding: 0 48px;
 }
 .testimonio {
   background: var(--superficie);
-  border-left: 4px solid var(--verde);
-  border-radius: 8px;
-  padding: 22px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--linea);
+  border-radius: 4px;
+  padding: 32px 28px;
 }
-.testimonio p { font-style: italic; margin-bottom: 10px; }
-.estrellas { color: var(--verde); display: block; margin-bottom: 6px; }
+.testimonio p { font-size: 0.98rem; margin-bottom: 16px; }
+.estrellas {
+  color: var(--verde);
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+}
+.testimonio strong { font-weight: 600; font-size: 0.9rem; }
 
 .form-opinion {
-  max-width: 520px;
-  margin: 40px auto;
+  max-width: 560px;
+  margin: 52px auto 0;
   background: var(--superficie);
-  padding: 28px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 40px;
+  border: 1px solid var(--linea);
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
-.form-opinion h3 { font-size: 1.3rem; }
+.form-opinion h3 { font-size: 1.2rem; margin-bottom: 4px; }
 .form-opinion input,
 .form-opinion textarea {
-  padding: 11px;
-  border: 1px solid var(--borde);
-  border-radius: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--linea);
+  border-radius: 2px;
   background: var(--fondo);
-  color: var(--texto);
+  color: var(--tinta);
   font-family: inherit;
+  font-size: 0.9rem;
 }
-.form-opinion textarea { min-height: 90px; resize: vertical; }
+.form-opinion textarea { min-height: 100px; resize: vertical; }
 
 /* ============================================================
    3. FOOTER
@@ -377,30 +420,39 @@ h3, h4 {
 .footer {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
-  background: var(--carbon);
-  color: #e8eae6;
-  padding: 45px 30px 20px;
-  margin-top: 55px;
+  gap: 40px;
+  background: var(--tinta);
+  color: #d8d6d0;
+  padding: 64px 48px 28px;
+  margin-top: 100px;
 }
 .footer-col { flex: 1; min-width: 180px; }
-.footer-col h4 { color: var(--verde); margin-bottom: 12px; font-size: 1.05rem; }
-.footer-col p { color: #b3b3b3; }
+.footer-col h4 {
+  color: #fff;
+  margin-bottom: 16px;
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.footer-col p { color: #9a978f; font-size: 0.9rem; }
 .footer-col a {
   display: block;
-  color: #b3b3b3;
+  color: #9a978f;
   text-decoration: none;
-  margin-bottom: 6px;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  transition: color 0.25s;
 }
 .footer-col a:hover { color: var(--verde); }
 .copy {
   width: 100%;
   text-align: center;
-  color: #9a9a9a;
-  font-size: 0.85rem;
+  color: #74716a;
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
   border-top: 1px solid #333;
-  padding-top: 15px;
-  margin-top: 15px;
+  padding-top: 20px;
+  margin-top: 20px;
 }
 
 /* ============================================================
@@ -414,28 +466,29 @@ h3, h4 {
   /* Muestra la hamburguesa y prepara el menú vertical */
   .hamburger {
     display: block;
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     color: var(--verde);
     cursor: pointer;
+    line-height: 1;
   }
   .nav {
-    display: none;             /* el menú se esconde... */
+    display: none;
     width: 100%;
+    order: 3;
   }
-  /* ...y se muestra como lista VERTICAL al activar el checkbox */
   .menu-toggle:checked ~ .nav { display: block; }
   .nav-list {
     flex-direction: column;    /* horizontal -> vertical */
     gap: 0;
   }
   .nav-list li {
-    border-top: 1px solid var(--borde);
-    padding: 12px 0;
+    border-top: 1px solid var(--linea);
+    padding: 14px 0;
   }
 
   /* El header se reorganiza */
-  .header { flex-wrap: wrap; padding: 12px 16px; }
-  .search { width: 100%; }
+  .header { flex-wrap: wrap; padding: 16px 20px; gap: 14px; }
+  .search { width: 100%; order: 2; }
   .search input { flex: 1; }
 
   /* Productos, beneficios y testimonios a 1 SOLA columna */
@@ -443,15 +496,21 @@ h3, h4 {
   .grid-beneficios,
   .grid-testimonios {
     grid-template-columns: 1fr;
-    padding: 0 16px;
+    padding: 0 20px;
   }
 
   /* La sección "Próximamente" se apila en vertical */
-  .coming-soon { flex-direction: column; padding: 30px 16px; margin: 16px; }
+  .coming-soon {
+    flex-direction: column;
+    padding: 40px 24px;
+    margin: 48px 20px;
+    gap: 28px;
+  }
 
   /* Tipografía más pequeña para que quepa y se lea bien */
-  .hero-phrases { font-size: 1.9rem; }
-  .titulo-seccion { font-size: 1.8rem; }
+  .hero-phrases { font-size: 2rem; }
+  .titulo-seccion { font-size: 1.8rem; margin: 56px 0 32px; }
+  .soon-text h2 { font-size: 2rem; }
 
   /* Imágenes al 100% del ancho del contenedor */
   .img-placeholder { width: 100%; }
@@ -460,6 +519,6 @@ h3, h4 {
   .btn { width: 100%; text-align: center; }
 
   /* Hero más bajo y texto reposicionado */
-  .hero-img { min-height: 300px; }
-  .hero-text { left: 16px; bottom: 22px; }
+  .hero-img { min-height: 340px; }
+  .hero-text { left: 22px; right: 22px; bottom: 30px; }
 }
