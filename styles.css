@@ -192,65 +192,81 @@ h3, h4, .logo {
 .btn-outline:hover { background: var(--tinta); color: #fff; }
 
 /* ============================================================
-   2.1 HERO con animación
+   2.1 HERO: carrusel de 3 fotos deslizables (scroll-snap, sin JS)
    ============================================================ */
 .hero {
   position: relative;
+}
+/* La "pista" que contiene los slides en fila y permite el scroll horizontal */
+.hero-track {
+  display: flex;
+  overflow-x: auto;                 /* habilita el desplazamiento lateral */
+  scroll-snap-type: x mandatory;    /* cada slide "encaja" al deslizar */
+  scroll-behavior: smooth;
+  scrollbar-width: none;            /* oculta la barra en Firefox */
+}
+.hero-track::-webkit-scrollbar { display: none; }  /* oculta la barra en Chrome/Safari */
+
+.slide {
+  position: relative;
+  flex: 0 0 100%;                   /* cada slide ocupa el 100% del ancho visible */
+  scroll-snap-align: start;         /* punto de anclaje del snap */
+  min-height: 480px;
   overflow: hidden;
 }
-.hero-img {
-  min-height: 460px;
+/* La foto de cada slide ocupa todo el espacio del slide */
+.slide-img {
+  position: absolute;
+  inset: 0;
   border: none;
-  color: #fff;
+  color: #ffffff;
   background: linear-gradient(120deg, #20231f, #3a3d38);
-  /* animación "Ken Burns": zoom lento e infinito */
-  animation: zoom 14s ease-in-out infinite alternate;
+  animation: zoom 14s ease-in-out infinite alternate;  /* zoom lento (Ken Burns) */
 }
+/* Cada slide con un tono distinto para distinguir las 3 fotos en la maqueta */
+.slide:nth-child(2) .slide-img { background: linear-gradient(120deg, #1d2a24, #38463f); }
+.slide:nth-child(3) .slide-img { background: linear-gradient(120deg, #262320, #423d38); }
 @keyframes zoom {
   from { transform: scale(1); }
   to   { transform: scale(1.08); }
 }
-/* Velo oscuro encima de la imagen para que el texto siempre se lea */
-.hero::after {
+/* Velo oscuro sobre la foto para que el texto siempre se lea */
+.slide::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.1));
-  pointer-events: none;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.15));
 }
 
-.hero-text {
+.slide-text {
   position: absolute;
   bottom: 60px;
   left: 56px;
   z-index: 2;
   max-width: 600px;
 }
-.hero-phrases {
+.slide-text h1 {
   font-size: 3.4rem;
   line-height: 1.05;
   color: #ffffff;
-  margin-bottom: 28px;
-  min-height: 3.8rem;          /* altura fija: evita que el botón se encime al rotar las frases */
-  position: relative;
+  margin-bottom: 26px;
 }
-.hero-phrases span:nth-child(1) { position: static; }  /* la 1ª reserva la altura del bloque */
-/* Las 3 frases se apilan y aparecen una a una */
-.hero-phrases span {
-  display: block;
+
+/* Pista visual "Desliza ->" en la esquina del hero */
+.hero-hint {
   position: absolute;
-  opacity: 0;
-  animation: rotarFrases 9s infinite;
+  bottom: 26px;
+  right: 32px;
+  z-index: 3;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: empujar 1.6s ease-in-out infinite;  /* pequeño vaivén que invita a deslizar */
 }
-.hero-phrases span:nth-child(1) { animation-delay: 0s; }
-.hero-phrases span:nth-child(2) { animation-delay: 3s; }
-.hero-phrases span:nth-child(3) { animation-delay: 6s; }
-@keyframes rotarFrases {
-  0%   { opacity: 0; transform: translateY(16px); }
-  10%  { opacity: 1; transform: translateY(0); }
-  30%  { opacity: 1; }
-  40%  { opacity: 0; }
-  100% { opacity: 0; }
+@keyframes empujar {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(6px); }
 }
 
 /* ============================================================
@@ -508,7 +524,7 @@ h3, h4, .logo {
   }
 
   /* Tipografía más pequeña para que quepa y se lea bien */
-  .hero-phrases { font-size: 2rem; }
+  .slide-text h1 { font-size: 2rem; }
   .titulo-seccion { font-size: 1.8rem; margin: 56px 0 32px; }
   .soon-text h2 { font-size: 2rem; }
 
@@ -518,7 +534,8 @@ h3, h4, .logo {
   /* Botones a ancho completo (más fáciles de tocar con el dedo) */
   .btn { width: 100%; text-align: center; }
 
-  /* Hero más bajo y texto reposicionado */
-  .hero-img { min-height: 340px; }
-  .hero-text { left: 22px; right: 22px; bottom: 30px; }
+  /* Hero más bajo y texto reposicionado (el carrusel se desliza con el dedo) */
+  .slide { min-height: 360px; }
+  .slide-text { left: 22px; right: 22px; bottom: 30px; }
+  .slide-text .btn { width: auto; }   /* el botón del hero no a ancho completo */
 }

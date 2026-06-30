@@ -65,24 +65,44 @@
   <main>
 
     <!-- ----------------------------------------------------------
-         2.1 HERO dinámico
-         Imagen grande con frases que rotan solas (animación CSS).
+         2.1 HERO: carrusel de 3 fotos deslizables
+         Scroll horizontal con scroll-snap (sin JavaScript). Cada slide
+         tiene su propia foto, su frase y su botón.
          ---------------------------------------------------------- -->
     <section class="hero">
-      <!-- CUADRO DE COLOR = aquí va la FOTO del hero -->
-      <div class="img-placeholder hero-img">
-        FOTO HERO: atleta entrenando<br>(horizontal, oscura, alta calidad)
+      <div class="hero-track">
+
+        <!-- Slide 1 -->
+        <article class="slide">
+          <div class="img-placeholder slide-img">FOTO HERO 1: atleta entrenando</div>
+          <div class="slide-text">
+            <h1>SIN EXCUSAS.</h1>
+            <a href="ofertas.html" class="btn">Comprar ahora</a>
+          </div>
+        </article>
+
+        <!-- Slide 2 -->
+        <article class="slide">
+          <div class="img-placeholder slide-img">FOTO HERO 2: levantamiento / gym</div>
+          <div class="slide-text">
+            <h1>SUPERA TU LÍMITE.</h1>
+            <a href="proteinas.html" class="btn">Ver proteínas</a>
+          </div>
+        </article>
+
+        <!-- Slide 3 -->
+        <article class="slide">
+          <div class="img-placeholder slide-img">FOTO HERO 3: energía / running</div>
+          <div class="slide-text">
+            <h1>ENERGÍA REAL.</h1>
+            <a href="preworkout.html" class="btn">Ver pre-workout</a>
+          </div>
+        </article>
+
       </div>
 
-      <!-- Frases que rotan automáticamente con animación -->
-      <div class="hero-text">
-        <h1 class="hero-phrases">
-          <span>SIN EXCUSAS.</span>
-          <span>SUPERA TU LÍMITE.</span>
-          <span>ENERGÍA REAL.</span>
-        </h1>
-        <a href="ofertas.html" class="btn">Comprar ahora</a>
-      </div>
+      <!-- Pista visual de que el hero se desliza -->
+      <span class="hero-hint">Desliza &rarr;</span>
     </section>
 
     <!-- ----------------------------------------------------------
