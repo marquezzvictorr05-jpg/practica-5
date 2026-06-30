@@ -193,36 +193,45 @@ h3, h4, .logo {
 .btn-outline:hover { background: var(--tinta); color: #fff; }
 
 /* ============================================================
-   2.1 HERO: carrusel de 3 fotos deslizables (scroll-snap, sin JS)
+   2.1 HERO: 3 fotos que cambian solas con fundido (crossfade)
+   Todo con CSS puro (animaciones @keyframes), SIN JavaScript.
    ============================================================ */
 .hero {
   position: relative;
-}
-/* La "pista" que contiene los slides en fila y permite el scroll horizontal */
-.hero-track {
-  display: flex;
-  overflow-x: auto;                 /* habilita el desplazamiento lateral */
-  scroll-snap-type: x mandatory;    /* cada slide "encaja" al deslizar */
-  scroll-behavior: smooth;
-  scrollbar-width: none;            /* oculta la barra en Firefox */
-}
-.hero-track::-webkit-scrollbar { display: none; }  /* oculta la barra en Chrome/Safari */
-
-.slide {
-  position: relative;
-  flex: 0 0 100%;                   /* cada slide ocupa el 100% del ancho visible */
-  scroll-snap-align: start;         /* punto de anclaje del snap */
-  min-height: 480px;
+  height: 480px;
   overflow: hidden;
 }
-/* La foto de cada slide ocupa todo el espacio del slide */
+
+/* Los 3 slides se apilan uno sobre otro en el mismo lugar */
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;                       /* ocultos por defecto... */
+  /* ...la animación los va mostrando por turnos en un ciclo de 18s */
+  animation: heroFade 18s infinite;
+}
+/* Cada slide entra 6s después del anterior (18s / 3 = 6s por slide) */
+.slide:nth-child(1) { animation-delay: 0s; }
+.slide:nth-child(2) { animation-delay: 6s; }
+.slide:nth-child(3) { animation-delay: 12s; }
+
+/* Ciclo de opacidad: aparece, se mantiene y se funde con el siguiente */
+@keyframes heroFade {
+  0%   { opacity: 0; }
+  4%   { opacity: 1; }   /* fade in */
+  30%  { opacity: 1; }   /* se mantiene visible */
+  37%  { opacity: 0; }   /* fade out (se cruza con el siguiente) */
+  100% { opacity: 0; }
+}
+
+/* La foto de cada slide ocupa todo el espacio */
 .slide-img {
   position: absolute;
   inset: 0;
   border: none;
   color: #ffffff;
   background: linear-gradient(120deg, #20231f, #3a3d38);
-  animation: zoom 14s ease-in-out infinite alternate;  /* zoom lento (Ken Burns) */
+  animation: zoom 9s ease-in-out infinite alternate;  /* zoom lento (Ken Burns) */
 }
 /* Cada slide con un tono distinto para distinguir las 3 fotos en la maqueta */
 .slide:nth-child(2) .slide-img { background: linear-gradient(120deg, #1d2a24, #38463f); }
@@ -253,21 +262,30 @@ h3, h4, .logo {
   margin-bottom: 26px;
 }
 
-/* Pista visual "Desliza ->" en la esquina del hero */
-.hero-hint {
+/* Puntos indicadores centrados abajo */
+.hero-dots {
   position: absolute;
-  bottom: 26px;
-  right: 32px;
+  bottom: 22px;
+  left: 0;
+  right: 0;
   z-index: 3;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.72rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  animation: empujar 1.6s ease-in-out infinite;  /* pequeño vaivén que invita a deslizar */
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
-@keyframes empujar {
-  0%, 100% { transform: translateX(0); }
-  50%      { transform: translateX(6px); }
+.hero-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  animation: punto 18s infinite;    /* se ilumina en sincronía con su slide */
+}
+.hero-dots span:nth-child(1) { animation-delay: 0s; }
+.hero-dots span:nth-child(2) { animation-delay: 6s; }
+.hero-dots span:nth-child(3) { animation-delay: 12s; }
+@keyframes punto {
+  0%, 33%    { background: var(--verde); transform: scale(1.25); }
+  34%, 100%  { background: rgba(255, 255, 255, 0.4); transform: scale(1); }
 }
 
 /* ============================================================
