@@ -214,37 +214,26 @@ h3, h4, .logo {
    2.2 PRÓXIMAMENTE
    ============================================================ */
 .coming-soon {
-  position: relative;
-  min-height: 460px;
-  margin: 90px 0;
   display: flex;
   align-items: center;
-  overflow: hidden;
+  gap: 48px;
+  background: var(--superficie);
+  padding: 48px 56px;
+  margin: 90px 48px;
+  border: 1px solid var(--linea);
+  border-radius: 6px;
 }
-/* Foto de fondo a sangre completa */
-.soon-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+/* Imagen del lanzamiento a la izquierda */
+.soon-img {
+  flex: 1;
+  width: 50%;
+  height: 340px;
   object-fit: cover;
+  border-radius: 4px;
 }
-/* Velo oscuro denso = sensación misteriosa y texto legible */
-.coming-soon::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.3) 100%);
-}
-.soon-content {
-  position: relative;
-  z-index: 2;
-  max-width: 620px;
-  padding: 0 56px;
-  color: #ffffff;
-}
-.soon-content h2 { font-size: 2.8rem; margin: 16px 0 18px; line-height: 1.05; }
-.soon-content p { color: rgba(255, 255, 255, 0.82); margin-bottom: 28px; }
+.soon-text { flex: 1; }
+.soon-text h2 { font-size: 2.6rem; margin: 14px 0 16px; line-height: 1.05; }
+.soon-text p { color: var(--tinta-suave); margin-bottom: 26px; }
 
 /* Etiqueta "Próximamente": texto fino con tracking y un punto verde parpadeante */
 .badge {
@@ -254,7 +243,7 @@ h3, h4, .logo {
   font-size: 0.72rem;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: var(--verde);
+  color: var(--verde-osc);
   font-weight: 600;
 }
 .badge::before {
@@ -323,29 +312,20 @@ h3, h4, .logo {
 }
 .card:hover .prod-media .prod-img { transform: scale(1.07); }   /* zoom dinámico al pasar el cursor */
 
-/* Etiqueta del TIPO sobre la imagen */
-.tag {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  z-index: 2;
-  background: var(--verde);
-  color: var(--tinta-verde);
-  font-size: 0.62rem;
-  font-weight: 700;
+.card-body { padding: 20px 18px; }
+.card h3 { margin-bottom: 2px; font-size: 1.05rem; font-weight: 600; }
+/* Tipo de producto como texto pequeño y discreto (requisito de la rúbrica) */
+.tipo {
+  color: var(--tinta-suave);
+  font-size: 0.68rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  padding: 5px 10px;
-  border-radius: 2px;
 }
-
-.card-body { padding: 20px 18px; }
-.card h3 { margin-bottom: 4px; font-size: 1.05rem; font-weight: 600; }
 .precio {
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--verde-osc);
-  margin: 6px 0 18px;
+  margin: 8px 0 18px;
 }
 
 .ver-mas { text-align: center; margin: 44px 0; }
@@ -509,14 +489,19 @@ h3, h4, .logo {
     padding: 0 20px;
   }
 
-  /* El banner de lanzamiento se hace más bajo y con menos padding */
-  .coming-soon { min-height: 380px; margin: 56px 0; }
-  .soon-content { padding: 0 24px; }
+  /* La sección de lanzamiento se apila en vertical (imagen arriba, texto abajo) */
+  .coming-soon {
+    flex-direction: column;
+    padding: 28px 20px;
+    margin: 56px 20px;
+    gap: 24px;
+  }
+  .soon-img { width: 100%; height: 220px; }
 
   /* Tipografía más pequeña para que quepa y se lea bien */
   .hero-text h1 { font-size: 2.1rem; }
   .titulo-seccion { font-size: 1.8rem; margin: 56px 0 32px; }
-  .soon-content h2 { font-size: 2rem; }
+  .soon-text h2 { font-size: 2rem; }
 
   /* Imágenes al 100% del ancho del contenedor */
   .prod-media .prod-img { width: 100%; height: 220px; }
